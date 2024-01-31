@@ -10,12 +10,12 @@ router.post("/", async (req, res) => {
         message: "Please include all fileds: title, author, publishYear",
       });
     }
-    const newBook = {
-      title: req.body.title,
-      author: req.body.author,
-      publishYear: req.body.publishYear,
-    };
-    const book = await Book.create(newBook);
+    // const newBook = {
+    //   title: req.body.title,
+    //   author: req.body.author,
+    //   publishYear: req.body.publishYear,
+    // };
+    const book = await Book.create(req.body);
     return res.status(201).send(book);
   } catch (error) {
     console.log(error.message);

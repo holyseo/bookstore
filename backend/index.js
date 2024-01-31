@@ -7,19 +7,22 @@ import cors from "cors";
 const app = express();
 app.use(express.json());
 
+app.use(cors());
+
 app.get("/", (req, res) => {
   console.log(req);
   return res.status(234).send("Welcome to MERN Stack Bookstore");
 });
 
 app.use("/books", booksRoute);
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    methods: [],
-    allowedHeaders: ["Content-Type"],
-  })
-);
+
+// app.use(
+//   cors({
+//     origin: "http://localhost:5173",
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type"],
+//   })
+// );
 
 mongoose
   .connect(MongoDBURL)
