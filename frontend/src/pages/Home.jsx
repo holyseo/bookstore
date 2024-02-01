@@ -24,7 +24,7 @@ const Home = () => {
       });
   }, []);
   return (
-    <div className="p-4">
+    <div className="p-4 bg-stone-100 w-2/3 mx-auto my-10">
       <div className="flex justify-between items-center my-10">
         <h1 className="text-3xl ">Books List</h1>
         <Link to="/books/create">
@@ -64,13 +64,13 @@ const Home = () => {
                 <td className="text-center bg-gray-50 text-xl border-2 border-slate-300 rounded-md ">
                   <div className="flex justify-center gap-x-5 items-center ">
                     <Link to={`/books/details/${book._id}`}>
-                      <BsInfoCircle className="text-blue-800 text-2xl" />
+                      <BsInfoCircle className="text-blue-800" />
                     </Link>
                     <Link to={`/books/edit/${book._id}`}>
-                      <AiOutlineEdit className=" text-orange-600 text-2xl" />
+                      <AiOutlineEdit className=" text-orange-600" />
                     </Link>
                     <Link to={`/books/delete/${book._id}`}>
-                      <MdOutlineDelete className="text-red-800 text-2xl" />
+                      <MdOutlineDelete className="text-red-800" />
                     </Link>
                   </div>
                 </td>
