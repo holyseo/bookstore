@@ -29,11 +29,10 @@ const EditBook = () => {
       publishYear: book.publishYear,
     };
 
-    console.log(newBook);
-
     axios
       .put(`http://localhost:5555/books/${id}`, newBook)
-      .then(() => {
+      .then(({ data }) => {
+        alert(data.message);
         navigate("/");
       })
       .catch((error) => {
