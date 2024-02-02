@@ -60,7 +60,7 @@ const CreateBook = () => {
         <input
           className="p-1 my-1 rounded-md"
           type="text"
-          placeholder="publishYear"
+          placeholder="Published Year"
           name="publishYear"
           value={book.publishYear}
           onChange={handleChange}
