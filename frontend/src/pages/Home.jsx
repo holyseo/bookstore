@@ -9,6 +9,8 @@ import Spinner from "../components/Spinner";
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [filteredBooks, setFilteredBooks] = useState([]);
+  // const [filteredByGenre, setFilteredByGenre] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -17,20 +19,57 @@ const Home = () => {
       .then(({ data }) => {
         setBooks(data.data);
         setLoading(false);
+        setFilteredBooks(data.data);
+        // setFilteredByGenre(data.data);
       })
       .catch((error) => {
         console.log(error);
         setLoading(false);
       });
   }, []);
+
+  const handleInputChange = (e) => {
+    const searchTerm = e.target.value;
+    const filteredItems = books.filter((book) => {
+      return book.title.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+    setFilteredBooks(filteredItems);
+  };
+
+  // const handleInputGenre = (e) => {
+  //   const searchGenre = e.target.value;
+  //   const filteredItems = books.filter((book) => {
+  //     return book.genre === searchGenre;
+  //   });
+  //   searchGenre === "all"
+  //     ? setFilteredByGenre(books)
+  //     : setFilteredByGenre(filteredItems);
+  // };
+
   return (
     <div className="p-4 bg-stone-100 mx-auto my-10">
-      <div className="flex justify-between items-center my-10 mx-auto">
+      <div className="w-1/2 flex justify-between items-center my-10 mx-auto">
         <h1 className="text-3xl ">Books List</h1>
         <div className="flex flex-row items-center gap-5 text-lg font-semibold">
-          <div>Search</div>
-          <div>Filter</div>
-          <div>Sort</div>
+          <div>
+            <input
+              type="text"
+              placeholder="Search by Title"
+              className=" placeholder:p-1 placeholder:font-light "
+              onChange={handleInputChange}
+            />
+          </div>
+          {/* <div className="font-light">
+            <select onChange={handleInputGenre}>
+              <option value="all">Filter by genre</option>
+              <option value="christian">Christian</option>
+              <option value="fiction">Fiction</option>
+              <option value="sci-fi">Sci-Fi</option>
+              <option value="mystery">Mystery</option>
+              <option value="romance">Romance</option>
+            </select>
+          </div> */}
+          {/* <div>Sort</div> */}
           <Link to="/books/create">
             <MdOutlineAddBox className="text-sky-800 text-4xl" />
           </Link>
@@ -58,7 +97,7 @@ const Home = () => {
             </tr>
           </thead>
           <tbody>
-            {books.map((book, index) => (
+            {filteredBooks.map((book, index) => (
               <tr key={book._id} className="h-8">
                 <td className="text-center px-2 bg-gray-50 text-lg border-2 border-slate-300 rounded-md">
                   {index + 1}
