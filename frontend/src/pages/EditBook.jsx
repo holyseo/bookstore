@@ -5,7 +5,11 @@ import BackButton from "../components/BackButton";
 
 const EditBook = () => {
   const { id } = useParams();
-  const [book, setBook] = useState({ title: "", author: "", publishYear: "" });
+  const [book, setBook] = useState({
+    title: "",
+    author: "",
+    publication_date: "",
+  });
 
   const navigate = useNavigate();
 
@@ -26,7 +30,7 @@ const EditBook = () => {
     const newBook = {
       title: book.title,
       author: book.author,
-      publishYear: book.publishYear,
+      publication_date: book.publication_date,
     };
 
     axios
@@ -65,12 +69,12 @@ const EditBook = () => {
           />
         </div>
         <div className="flex flex-row justify-between items-center gap-5">
-          <label>Publish Year:</label>
+          <label>Publication Date:</label>
           <input
             type="text"
             className="p-1 my-1 rounded-md"
-            name="publishYear"
-            value={book.publishYear}
+            name="publication_date"
+            value={new Date(book.publication_date).toLocaleDateString("en-US")}
             onChange={updateBook}
           />
         </div>

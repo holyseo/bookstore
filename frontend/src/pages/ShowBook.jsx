@@ -25,7 +25,7 @@ const ShowBook = () => {
   }, [id]);
 
   return (
-    <div className="p-4 bg-stone-50 w-fit mx-auto my-10 border-2 border-gray-300 rounded-lg">
+    <div className="w-1/3 p-4 bg-stone-50 mx-auto my-10 border-2 border-gray-300 rounded-lg">
       {loading ? (
         <Spinner />
       ) : (
@@ -40,22 +40,40 @@ const ShowBook = () => {
           <div className=" tracking-wide p-3 bg-gray-300 bg-opacity-30 m-5 rounded-xl">
             <span className="font-extrabold">Title: </span>
             <span>{book.title}</span>
-          </div>
+          </div>{" "}
           <div className=" tracking-wide p-3 bg-gray-300 bg-opacity-30 m-5 rounded-xl">
             <span className="font-extrabold">Author: </span>
             <span>{book.author}</span>
           </div>
           <div className=" tracking-wide p-3 bg-gray-300 bg-opacity-30 m-5 rounded-xl">
-            <span className="font-extrabold">Year: </span>
-            <span>{book.publishYear}</span>
+            <span className="font-extrabold">Description: </span>
+            <span>{book.description}</span>
           </div>
           <div className=" tracking-wide p-3 bg-gray-300 bg-opacity-30 m-5 rounded-xl">
-            <span className="font-extrabold">Time created: </span>
-            <span>{book.createdAt}</span>
+            <span className="font-extrabold">Publication Date: </span>
+            <span>
+              {new Date(book.publication_date).toLocaleDateString("en-US")}
+            </span>
           </div>
           <div className=" tracking-wide p-3 bg-gray-300 bg-opacity-30 m-5 rounded-xl">
-            <span className="font-extrabold">Time updated: </span>
-            <span>{book.updatedAt}</span>
+            <span className="font-extrabold">ISBN: </span>
+            <span>{book.isbn}</span>
+          </div>
+          <div className=" tracking-wide p-3 bg-gray-300 bg-opacity-30 m-5 rounded-xl">
+            <span className="font-extrabold">Genre: </span>
+            <span>{book.genre}</span>
+          </div>{" "}
+          <div className=" tracking-wide p-3 bg-gray-300 bg-opacity-30 m-5 rounded-xl">
+            <span className="font-extrabold">Publisher: </span>
+            <span>{book.publisher}</span>
+          </div>
+          <div className=" tracking-wide p-3 bg-gray-300 bg-opacity-30 m-5 rounded-xl">
+            <span className="font-extrabold">Price: </span>
+            <span>{book.price}</span>
+          </div>{" "}
+          <div className=" tracking-wide p-3 bg-gray-300 bg-opacity-30 m-5 rounded-xl">
+            <span className="font-extrabold">Language: </span>
+            <span>{book.language}</span>
           </div>
           <div className="mt-10">
             <BackButton />

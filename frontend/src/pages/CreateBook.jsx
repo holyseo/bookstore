@@ -8,7 +8,7 @@ const CreateBook = () => {
   const [book, setBook] = useState({
     title: "",
     author: "",
-    publishYear: "",
+    publication_date: "",
   });
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const CreateBook = () => {
       setBook({
         title: "",
         author: "",
-        publishYear: "",
+        publication_date: "",
       });
       navigate("/");
     } catch (error) {
@@ -59,10 +59,10 @@ const CreateBook = () => {
         />
         <input
           className="p-1 my-1 rounded-md"
-          type="text"
+          type="date"
           placeholder="Published Year"
-          name="publishYear"
-          value={book.publishYear}
+          name="publication_date"
+          value={book.publication_date}
           onChange={handleChange}
         />
         <div className="flex flex-row justify-between items-center">

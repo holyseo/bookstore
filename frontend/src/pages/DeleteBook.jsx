@@ -39,7 +39,10 @@ const DeleteBook = () => {
       <div className=" font-semibold text-lg flex flex-col bg-slate-200 p-3 rounded-lg">
         <div>Title: {book.title}</div>
         <div>Author: {book.author}</div>
-        <div>Published Year: {book.publishYear}</div>
+        <div>
+          Published Year:{" "}
+          {new Date(book.publication_date).toLocaleDateString("en-US")}
+        </div>
       </div>
       <div className="flex flex-row items-center">
         <BackButton />

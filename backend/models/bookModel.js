@@ -9,12 +9,40 @@ const bookSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    publishYear: {
+    isbn: {
+      type: String,
+      required: true,
+    },
+    publication_date: {
+      type: Date,
+      required: true,
+    },
+    genre: {
+      type: String,
+      required: true,
+    },
+    publihser: {
+      type: String,
+      required: true,
+    },
+    price: {
       type: Number,
+      required: true,
+    },
+    language: {
+      type: String,
+      required: true,
+    },
+    page_count: {
+      type: Number,
+      required: true,
+    },
+    description: {
+      type: String,
       required: true,
     },
   },
   { timestamps: true }
 );
 
-export const Book = mongoose.model("Cat", bookSchema);
+export const Book = mongoose.model("books", bookSchema);
