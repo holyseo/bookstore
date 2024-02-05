@@ -47,15 +47,15 @@ const Home = () => {
   // };
 
   return (
-    <div className="p-4 bg-stone-100 mx-auto my-10">
+    <div className="p-4 mx-auto my-10">
       <div className="w-1/2 flex justify-between items-center my-10 mx-auto">
         <h1 className="text-3xl ">Books List</h1>
-        <div className="flex flex-row items-center gap-5 text-lg font-semibold">
+        <div className="flex flex-row items-center gap-5 font-semibold">
           <div>
             <input
               type="text"
               placeholder="Search by Title"
-              className=" placeholder:p-1 placeholder:font-light "
+              className=" placeholder:p-1 placeholder:font-light placeholder:text-sm border-2 border-gray-200"
               onChange={handleInputChange}
             />
           </div>
@@ -71,7 +71,7 @@ const Home = () => {
           </div> */}
           {/* <div>Sort</div> */}
           <Link to="/books/create">
-            <MdOutlineAddBox className="text-sky-800 text-4xl" />
+            <MdOutlineAddBox className="text-sky-800 text-3xl" />
           </Link>
         </div>
       </div>
@@ -81,16 +81,24 @@ const Home = () => {
         <table className="w-fit mx-auto border-separate border-spacing-2 ">
           <thead>
             <tr>
-              <th className="border border-slate-500 rounded-md">No</th>
-              <th className="border border-slate-500 rounded-md">Title</th>
-              <th className="border border-slate-500 rounded-md">Author</th>
-              <th className="border border-slate-500 rounded-md">ISBN</th>
-              <th className="border border-slate-500 rounded-md">Genre</th>
-              <th className="border border-slate-500 rounded-md">Publisher</th>
-              <th className="border border-slate-500 rounded-md">Price</th>
-              <th className="border border-slate-500 rounded-md">Language</th>
-              <th className="border border-slate-500 rounded-md">Page Count</th>
-              <th className="border border-slate-500 rounded-md">
+              <th className="border border-slate-500 px-2 rounded-md">No</th>
+              <th className="border border-slate-500 px-2 rounded-md">Title</th>
+              <th className="border border-slate-500 px-2 rounded-md">
+                Author
+              </th>
+              <th className="border border-slate-500 px-2 rounded-md">ISBN</th>
+              <th className="border border-slate-500 px-2 rounded-md">Genre</th>
+              <th className="border border-slate-500 px-2 rounded-md">
+                Publisher
+              </th>
+              <th className="border border-slate-500 px-2 rounded-md">Price</th>
+              <th className="border border-slate-500 px-2 rounded-md">
+                Language
+              </th>
+              <th className="border border-slate-500 px-2 rounded-md">
+                Page Count
+              </th>
+              <th className="border border-slate-500 px-2 rounded-md">
                 Publication Date
               </th>
               <th className="border border-slate-500 rounded-md">Operations</th>
@@ -99,34 +107,34 @@ const Home = () => {
           <tbody>
             {filteredBooks.map((book, index) => (
               <tr key={book._id} className="h-8">
-                <td className="text-center px-2 bg-gray-50 text-lg border-2 border-slate-300 rounded-md">
+                <td className="text-center px-2 bg-gray-50 border-2 border-slate-300 rounded-md">
                   {index + 1}
                 </td>
-                <td className="text-center px-2 bg-gray-50 text-lg border-2 border-slate-300 rounded-md">
+                <td className="text-center px-2 bg-gray-50 border-2 border-slate-300 rounded-md">
                   {book.title}
                 </td>
-                <td className="text-center px-2 bg-gray-50 text-lg border-2 border-slate-300 rounded-md">
+                <td className="text-center px-2 bg-gray-50 border-2 border-slate-300 rounded-md">
                   {book.author}
                 </td>
-                <td className="text-center px-2 bg-gray-50 text-lg border-2 border-slate-300 rounded-md">
+                <td className="text-center px-2 bg-gray-50 border-2 border-slate-300 rounded-md">
                   {book.isbn}
                 </td>
-                <td className="text-center px-2 bg-gray-50 text-lg border-2 border-slate-300 rounded-md">
+                <td className="text-center px-2 bg-gray-50 border-2 border-slate-300 rounded-md">
                   {book.genre}
                 </td>
-                <td className="text-center px-2 bg-gray-50 text-lg border-2 border-slate-300 rounded-md">
+                <td className="text-center px-2 bg-gray-50 border-2 border-slate-300 rounded-md">
                   {book.publisher}
                 </td>
-                <td className="text-center px-2 bg-gray-50 text-lg border-2 border-slate-300 rounded-md">
+                <td className="text-center px-2 bg-gray-50 border-2 border-slate-300 rounded-md">
                   {book.price}
                 </td>
-                <td className="text-center px-2 bg-gray-50 text-lg border-2 border-slate-300 rounded-md">
+                <td className="text-center px-2 bg-gray-50 border-2 border-slate-300 rounded-md">
                   {book.language}
                 </td>
-                <td className="text-center px-2 bg-gray-50 text-lg border-2 border-slate-300 rounded-md">
+                <td className="text-center px-2 bg-gray-50 border-2 border-slate-300 rounded-md">
                   {book.page_count}
                 </td>
-                <td className="text-center px-2 bg-gray-50 text-lg border-2 border-slate-300 rounded-md">
+                <td className="text-center px-2 bg-gray-50 border-2 border-slate-300 rounded-md">
                   {new Date(book.publication_date).toLocaleDateString("en-US")}
                 </td>
                 <td className="text-center px-2 bg-gray-50 text-xl border-2 border-slate-300 rounded-md ">

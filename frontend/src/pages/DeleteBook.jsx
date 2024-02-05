@@ -32,11 +32,11 @@ const DeleteBook = () => {
   };
 
   return (
-    <div className="flex flex-col items-center bg-gray-400 bg-opacity-50 shadow-md  shadow-slate-800 drop-shadow-xl w-1/3 mx-auto mt-16 p-3 gap-5">
-      <div className="text-xl font-bold m-3">
+    <div className="flex flex-col items-center bg-gray-100 bg-opacity-70 shadow-lg w-1/4 mx-auto mt-16 gap-3">
+      <div className="text-lg text-white m-3 bg-sky-700 bg-opacity-80 rounded-lg p-2">
         Are you sure you want to delete this book permanently?
       </div>
-      <div className=" font-semibold text-lg flex flex-col bg-slate-200 p-3 rounded-lg">
+      <div className=" flex flex-col bg-gray-200 w-1/2 p-3 tracking-wide leading-8 rounded-lg">
         <div>Title: {book.title}</div>
         <div>Author: {book.author}</div>
         <div>

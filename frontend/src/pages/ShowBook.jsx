@@ -25,7 +25,7 @@ const ShowBook = () => {
   }, [id]);
 
   return (
-    <div className="w-1/3 p-4 bg-stone-50 mx-auto my-10 border-2 border-gray-300 rounded-lg">
+    <div className="w-1/3 p-4 bg-stone-50 mx-auto my-10 border-2 border-gray-500 shadow-2xl rounded-lg">
       {loading ? (
         <Spinner />
       ) : (
