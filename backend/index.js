@@ -2,6 +2,7 @@ import express from "express";
 import { PORT, MongoDBURL } from "./config.js";
 import mongoose from "mongoose";
 import booksRoute from "./routes/booksRoute.js";
+import usersRoute from "./routes/usersRoute.js";
 import cors from "cors";
 
 const app = express();
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/books", booksRoute);
+app.use("/users", usersRoute);
 
 // app.use(
 //   cors({

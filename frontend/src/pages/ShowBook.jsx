@@ -1,10 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import BackButton from "../components/BackButton";
+import UserContext from "../../../backend/UserContext";
 
 const ShowBook = () => {
+  const navigate = useNavigate();
+  const { user, logout } = useContext(UserContext);
+
   const { id } = useParams();
 
   const [book, setBook] = useState({});
@@ -12,19 +16,21 @@ const ShowBook = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5555/books/${id}`)
-      .then(({ data }) => {
-        setBook(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-      });
+    user
+      ? axios
+          .get(`http://localhost:5555/books/${id}`)
+          .then(({ data }) => {
+            setBook(data);
+            setLoading(false);
+          })
+          .catch((error) => {
+            console.log(error);
+            setLoading(false);
+          })
+      : navigate("/login");
   }, [id]);
 
-  return (
+  return user ? (
     <div className="w-1/3 p-4 bg-stone-50 mx-auto my-10 border-2 border-gray-500 shadow-2xl rounded-lg">
       {loading ? (
         <Spinner />
@@ -75,12 +81,24 @@ const ShowBook = () => {
             <span className="font-extrabold">Language: </span>
             <span>{book.language}</span>
           </div>
-          <div className="mt-10">
+          <div className="mt-10 flex flex-row items-center justify-between px-5">
             <BackButton />
+            <span>
+              {user ? (
+                <button
+                  onClick={logout}
+                  className="bg-red-700 p-2 rounded-md text-white font-semibold"
+                >
+                  Log Out
+                </button>
+              ) : null}
+            </span>
           </div>
         </div>
       )}
     </div>
+  ) : (
+    navigate("/login")
   );
 };
 

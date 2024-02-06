@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
   try {
     if (!req.body.title || !req.body.author || !req.body.publication_date) {
       return res.status(400).send({
-        message: "Please include all fileds: title, author, publishYear",
+        message: "Please include all fields: title, author, publishYear",
       });
     }
     // const newBook = {
