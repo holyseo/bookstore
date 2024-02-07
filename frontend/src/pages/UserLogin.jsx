@@ -58,7 +58,7 @@ const Login = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col p-10 gap-8 w-1/5 bg-blue-100">
+        <div className="flex flex-col p-10 gap-8 w-1/6 bg-blue-100">
           <div className="text-xl font-semibold">Sign in</div>
           <div className="flex flex-col gap-5">
             <input

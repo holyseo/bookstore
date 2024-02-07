@@ -42,19 +42,23 @@ const Home = () => {
   };
 
   return (
-    <div className="p-4 mx-auto my-10">
-      <div className=" flex flex-row justify-between w-3/4 mx-auto items-end">
-        <h1 className="text-3xl ">Books List</h1>
-        <div className="flex flex-row text-lg items-center gap-5 font-semibold">
-          <div className="flex justify-between ">
+    <div className="p-4 mx-auto bg-blue-50">
+      <div className=" mt-20 flex flex-row justify-between w-3/4 mx-auto items-end">
+        <h1 className="text-3xl text-gray-600 font-bold ">Dashboard</h1>
+        <div className="flex flex-row text-lg items-center gap-20 font-semibold">
+          <div className="flex justify-between items-center gap-5">
             <input
               type="text"
-              placeholder="Search by Title"
-              className=" placeholder:p-1 placeholder:font-light placeholder:text-sm border-2 border-gray-200"
+              placeholder="Search books by Title..."
+              className=" text-sm font-light rounded-md h-9 w-60 placeholder:p-2 placeholder:font-light placeholder:text-sm border-2 border-gray-200"
               onChange={handleInputChange}
             />
             <Link to="/books/create">
-              <MdOutlineAddBox className="text-sky-800 text-3xl" />
+              <button className="bg-sky-600 text-white p-2 rounded-lg text-sm">
+                <span className=" flex flex-row gap-1 items-center justify-center">
+                  Add Book
+                </span>
+              </button>
             </Link>
           </div>
           <div>
@@ -65,7 +69,7 @@ const Home = () => {
                 onClick={() => {
                   logout();
                 }}
-                className="bg-red-700 p-1 rounded-md text-white text-sm font-semibold"
+                className="bg-red-700 p-2 rounded-md text-white text-sm font-semibold"
               >
                 Log Out
               </button>
