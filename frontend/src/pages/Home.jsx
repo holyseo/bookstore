@@ -1,32 +1,37 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
 import { BsInfoCircle } from "react-icons/bs";
 import { AiOutlineEdit } from "react-icons/ai";
 import Spinner from "../components/Spinner";
+import UserContext from "../UserContext";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filteredBooks, setFilteredBooks] = useState([]);
+  const { user, logout } = useContext(UserContext);
+  const navigate = useNavigate();
   // const [filteredByGenre, setFilteredByGenre] = useState([]);
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get("http://localhost:5555/books")
-      .then(({ data }) => {
-        setBooks(data.data);
-        setLoading(false);
-        setFilteredBooks(data.data);
-        // setFilteredByGenre(data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-      });
-  }, []);
+    user !== "guest"
+      ? axios
+          .get("http://localhost:5555/books")
+          .then(({ data }) => {
+            setBooks(data.data);
+            setLoading(false);
+            setFilteredBooks(data.data);
+            // setFilteredByGenre(data.data);
+          })
+          .catch((error) => {
+            console.log(error);
+            setLoading(false);
+          })
+      : navigate("/login");
+  }, [user]);
 
   const handleInputChange = (e) => {
     const searchTerm = e.target.value;
@@ -36,49 +41,42 @@ const Home = () => {
     setFilteredBooks(filteredItems);
   };
 
-  // const handleInputGenre = (e) => {
-  //   const searchGenre = e.target.value;
-  //   const filteredItems = books.filter((book) => {
-  //     return book.genre === searchGenre;
-  //   });
-  //   searchGenre === "all"
-  //     ? setFilteredByGenre(books)
-  //     : setFilteredByGenre(filteredItems);
-  // };
-
   return (
     <div className="p-4 mx-auto my-10">
-      <div className="w-1/2 flex justify-between items-center my-10 mx-auto">
+      <div className=" flex flex-row justify-between w-3/4 mx-auto items-end">
         <h1 className="text-3xl ">Books List</h1>
-        <div className="flex flex-row items-center gap-5 font-semibold">
-          <div>
+        <div className="flex flex-row text-lg items-center gap-5 font-semibold">
+          <div className="flex justify-between ">
             <input
               type="text"
               placeholder="Search by Title"
               className=" placeholder:p-1 placeholder:font-light placeholder:text-sm border-2 border-gray-200"
               onChange={handleInputChange}
             />
+            <Link to="/books/create">
+              <MdOutlineAddBox className="text-sky-800 text-3xl" />
+            </Link>
           </div>
-          {/* <div className="font-light">
-            <select onChange={handleInputGenre}>
-              <option value="all">Filter by genre</option>
-              <option value="christian">Christian</option>
-              <option value="fiction">Fiction</option>
-              <option value="sci-fi">Sci-Fi</option>
-              <option value="mystery">Mystery</option>
-              <option value="romance">Romance</option>
-            </select>
-          </div> */}
-          {/* <div>Sort</div> */}
-          <Link to="/books/create">
-            <MdOutlineAddBox className="text-sky-800 text-3xl" />
-          </Link>
+          <div>
+            {user === "guest" ? (
+              <button onClick={() => navigate("/login")}>Sign In</button>
+            ) : (
+              <button
+                onClick={() => {
+                  logout();
+                }}
+                className="bg-red-700 p-1 rounded-md text-white text-sm font-semibold"
+              >
+                Log Out
+              </button>
+            )}
+          </div>
         </div>
       </div>
       {loading ? (
         <Spinner />
       ) : (
-        <table className="w-fit mx-auto border-separate border-spacing-2 ">
+        <table className="w-fit mt-10 mx-auto border-separate border-spacing-2 ">
           <thead>
             <tr>
               <th className="border border-slate-500 px-2 rounded-md">No</th>

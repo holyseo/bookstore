@@ -6,21 +6,21 @@ import EditBook from "./pages/EditBook";
 import DeleteBook from "./pages/DeleteBook";
 import Login from "./pages/UserLogin";
 import { useState } from "react";
-import UserContext from "../../backend/UserContext";
+import UserContext from "./UserContext";
 
 const App = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("guest");
 
   const login = (userData) => {
     setUser(userData);
   };
 
-  const logOut = () => {
-    setUser(null);
+  const logout = () => {
+    setUser("guest");
   };
 
   return (
-    <UserContext.Provider value={{ user, login, logOut }}>
+    <UserContext.Provider value={{ user, login, logout }}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/books/create" element={<CreateBook />} />

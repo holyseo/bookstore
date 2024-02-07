@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import BackButton from "../components/BackButton";
-import UserContext from "../../../backend/UserContext";
+import UserContext from "../UserContext";
 
 const ShowBook = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const ShowBook = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    user
+    user !== "guest"
       ? axios
           .get(`http://localhost:5555/books/${id}`)
           .then(({ data }) => {
@@ -28,9 +28,9 @@ const ShowBook = () => {
             setLoading(false);
           })
       : navigate("/login");
-  }, [id]);
+  }, [user]);
 
-  return user ? (
+  return (
     <div className="w-1/3 p-4 bg-stone-50 mx-auto my-10 border-2 border-gray-500 shadow-2xl rounded-lg">
       {loading ? (
         <Spinner />
@@ -84,9 +84,11 @@ const ShowBook = () => {
           <div className="mt-10 flex flex-row items-center justify-between px-5">
             <BackButton />
             <span>
-              {user ? (
+              {user !== "guest" ? (
                 <button
-                  onClick={logout}
+                  onClick={() => {
+                    logout();
+                  }}
                   className="bg-red-700 p-2 rounded-md text-white font-semibold"
                 >
                   Log Out
@@ -97,8 +99,6 @@ const ShowBook = () => {
         </div>
       )}
     </div>
-  ) : (
-    navigate("/login")
   );
 };
 
